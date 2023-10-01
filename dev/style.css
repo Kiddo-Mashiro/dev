@@ -1,0 +1,153 @@
+/* Tout sera la dedans */
+.container {
+  border-radius: 20px;
+  width: 30%;
+  background-color: slateblue;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.npe {
+  text-align: left;
+  margin-left: 120px;
+}
+
+textarea {
+    border-radius: 10px;
+    border-color: black;
+    padding: 10px;
+}
+
+.milieu {
+  display: flex; /* Utilisation de flexbox pour disposer en ligne */
+  flex-direction: row; /* Les éléments sont disposés horizontalement */
+  justify-content: space-between; /* Espacement égal entre les éléments */
+  align-items: center; /* Centrage vertical des éléments */
+  text-align: center; /* Centrage du texte */
+}
+
+.h3 {
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: -30px;
+}
+p {
+    margin-bottom: -37px;
+    margin-left: 537px;
+}
+/* Style de la section 1 */
+.section1 {
+  flex-basis: 30%; /* La section 1 occupe 30% de l'espace */
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Les éléments sont disposés en colonne */
+  align-items: flex-start; /* Alignement à gauche */
+}
+
+
+/* Style du select */
+.section1 select {
+  align-self: flex-start; /* Aligner le select à gauche */
+  margin-bottom: 100px; /* Espacement en bas */
+  width: 150px;
+  height: 30px;
+  border-radius: 15px;
+  padding-left: 5px;
+}
+
+/* Style de la section 2 (la photo) */
+.section2 {
+  flex-basis: 30%; /* La section 2 occupe 30% de l'espace */
+  padding: 10px;
+  text-align: left; /* Centre le contenu horizontalement */
+  margin-left: 10px;
+}
+
+/* Style de la section 3 */
+.section3 {
+  flex-basis: 30%; /* La section 3 occupe 30% de l'espace */
+  padding: 10px;
+  margin-bottom: 100px;
+}
+
+/* Style général pour les sections */
+.nouvelle-section {
+  display: flex; /* Utilisation de flexbox pour disposer en ligne */
+  justify-content: space-between; /* Espacement égal entre les sections */
+  align-items: flex-start; /* Alignement vertical au sommet */
+}
+
+/* Style des sections individuelles */
+.nouvelle-section > div {
+  flex-basis: 30%; /* Chaque section occupe 30% de l'espace */
+  padding: 10px;
+  text-align: center; /* Centre le contenu horizontalement */
+}
+
+/* Style des labels */
+.nouvelle-section label {
+  display: block; /* Afficher en bloc (une ligne par label) */
+  margin-bottom: 5px; /* Espacement entre les labels */
+
+}
+
+
+/* Style général pour les sections */
+.nouvelle-section1 {
+  display: flex; /* Utilisation de flexbox pour disposer en ligne */
+  justify-content: space-between; /* Espacement égal entre les sections */
+  align-items: flex-start; /* Alignement vertical au sommet */
+}
+
+/* Style des sections individuelles */
+.nouvelle-section1 > div {
+  flex-basis: 30%; /* Chaque section occupe 30% de l'espace */
+  padding: 10px;
+  text-align: center; /* Centre le contenu horizontalement */
+}
+
+.nouvelle-section1 input[type="text"] {
+    display: block; /* Place chaque champ de texte sur une nouvelle ligne */
+    margin: 0 auto; /* Centre les champs de texte horizontalement */
+    padding: 5px; /* Espace intérieur autour des champs de texte */
+    width: 80%; /* Largeur des champs de texte */
+    border: 1px solid #ccc; /* Bordure légère */
+    border-radius: 15px; /* Coins arrondis */
+}
+/* Style pour les boutons */
+.nouvelle-section1 .boutons {
+    text-align: center; /* Centre les boutons horizontalement */
+}
+
+button {
+    margin: 5px; /* Espace entre les boutons */
+    padding: 10px 20px; /* Espacement interne des boutons */
+    background-color: #000000; /* Couleur de fond des boutons */
+    color: #fff; /* Couleur du texte des boutons */
+    border: none; /* Pas de bordure */
+    border-radius: 20px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur au survol */
+    width: 200px;
+}
+
+button:hover {
+    background-color: #fa49a2; /* Couleur de fond au survol */
+}
+
+
+img {
+  width: 90%;
+  border: 2px solid black;
+}
+
+input {
+  border-radius: 5px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+select{
+    border-radius: 5px;
+
+}
