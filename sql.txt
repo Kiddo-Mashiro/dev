@@ -151,3 +151,23 @@ INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p4
 INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p502', 'stylo plume', 9, 35);
 # 9 records
 
+
+
+
+
+
+
+
+
+1) La liste des clients du NORD et du PAS DE CALAIS
+2) La liste des clients triée par ordre croissant du NOM
+3) Le nombre de clients par département
+4) La liste des produits par ordre croissant du prix
+5) La quantité totale en stock
+6) La liste des produits de la commande C02
+7) Le num, nom, ville, date de la commande du client ayant passé la commande C03
+8) Le montant de chaque commande
+9) Le nombre de commandes avant le 1er Novembre 2020
+10) Le nombre de commande par année
+11) Le nombre de client ayant commandé P018
+12) Les clients n’ayant jamais commandé
