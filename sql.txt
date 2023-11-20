@@ -1,0 +1,153 @@
+#
+# DUMP FILE
+#
+# Database is ported from MS Access
+#------------------------------------------------------------------
+# Created using "MS Access to MySQL" form http://www.bullzip.com
+# Program Version 5.5.282
+#
+# OPTIONS:
+#   sourcefilename=D:/IUT VALENCIENNES/TIC TC2 2020/Base de données/TP2/Commande_eleve.accdb
+#   sourceusername=
+#   sourcepassword=
+#   sourcesystemdatabase=
+#   destinationdatabase=tp2_commande
+#   storageengine=MyISAM
+#   dropdatabase=1
+#   createtables=1
+#   unicode=1
+#   autocommit=1
+#   transferdefaultvalues=1
+#   transferindexes=1
+#   transferautonumbers=1
+#   transferrecords=1
+#   columnlist=1
+#   tableprefix=
+#   negativeboolean=0
+#   ignorelargeblobs=0
+#   memotype=LONGTEXT
+#   datetimetype=DATETIME
+#
+
+DROP DATABASE IF EXISTS `tp2_sio1_commande`;
+CREATE DATABASE IF NOT EXISTS `tp2_sio1_commande`;
+USE `tp2_sio1_commande`;
+
+#
+# Table structure for table 'client'
+#
+
+DROP TABLE IF EXISTS `client`;
+
+CREATE TABLE `client` (
+  `cliID` VARCHAR(3) NOT NULL, 
+  `clinom` VARCHAR(15), 
+  `cliville` LONGTEXT, 
+  `clidept` VARCHAR(5), 
+  PRIMARY KEY (`cliID`)
+) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
+
+#
+# Dumping data for table 'client'
+#
+
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('1', 'Dumont', 'Calais', '62');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('2', 'Lilian', 'Lille', '59');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('3', 'Cauet', 'Anzin', '59');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('4', 'Ribeau', 'Lens', '62');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('5', 'Fresnoy', 'Lille', '59');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('6', 'Amar', 'St-Quentin', '02');
+INSERT INTO `client` (`cliID`, `clinom`, `cliville`, `clidept`) VALUES ('7', 'Lemaitre', 'Arras', '62');
+# 7 records
+
+#
+# Table structure for table 'commande'
+#
+
+DROP TABLE IF EXISTS `commande`;
+
+CREATE TABLE `commande` (
+  `comID` VARCHAR(10) NOT NULL, 
+  `comdate` DATETIME, 
+  `comcli` VARCHAR(3), 
+  PRIMARY KEY (`comID`)
+) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
+
+#
+# Dumping data for table 'commande'
+#
+
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c01', '2020-10-20 00:00:00', '1');
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c02', '2020-12-15 00:00:00', '2');
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c03', '2020-07-18 00:00:00', '3');
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c04', '2020-08-05 00:00:00', '4');
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c05', '2021-01-23 00:00:00', '1');
+INSERT INTO `commande` (`comID`, `comdate`, `comcli`) VALUES ('c06', '2020-12-08 00:00:00', '2');
+# 6 records
+
+#
+# Table structure for table 'lignecom'
+#
+
+DROP TABLE IF EXISTS `lignecom`;
+
+CREATE TABLE `lignecom` (
+  `ligncom` VARCHAR(5) NOT NULL, 
+  `lignprod` VARCHAR(5), 
+  `lignqte` INTEGER DEFAULT 0
+) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
+
+#
+# Dumping data for table 'lignecom'
+#
+
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c01', 'p237', 2);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c01', 'p018', 5);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c02', 'p502', 1);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c02', 'p237', 8);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c02', 'p334', 2);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c03', 'p223', 10);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c04', 'p125', 4);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c04', 'p223', 5);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c04', 'p502', 3);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c05', 'p144', 8);
+INSERT INTO `lignecom` (`ligncom`, `lignprod`, `lignqte`) VALUES ('c06', 'p018', 2);
+# 11 records
+
+#
+# Table structure for table 'produit'
+#
+
+DROP TABLE IF EXISTS `produit`;
+
+CREATE TABLE `produit` (
+  `prodID` VARCHAR(5) NOT NULL, 
+  `prodlib` LONGTEXT, 
+  `prodpuht` DECIMAL(19,4) DEFAULT 0, 
+  `prodstock` INTEGER DEFAULT 0, 
+  PRIMARY KEY (`prodID`)
+) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
+
+#
+# Dumping data for table 'produit'
+#
+
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p018', 'equerre', 4.1, 60);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p125', 'crayons', 4.5, 50);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p144', 'lot chemises', 5.75, 40);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p223', 'boîte multiusages', 3.74, 110);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p237', 'lampe bureau', 15.25, 49);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p334', 'ramette x500 60g', 3.27, 15);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p420', 'ramette x500 80g', 3.5, 32);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p429', 'couvertures', 8.42, 20);
+INSERT INTO `produit` (`prodID`, `prodlib`, `prodpuht`, `prodstock`) VALUES ('p502', 'stylo plume', 9, 35);
+# 9 records
+
