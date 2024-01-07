@@ -1,86 +1,77 @@
-<?php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insérer une ligne</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Insérer une ligne</h1>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    <form action="insert.php" method="post">
+        <label for="table">Choisir une table :</label>
+        <select name="table" id="table">
+            <option value="client">client</option>
+            <option value="produit">produit</option>
+            <option value="commande">commande</option>
+            <option value="lignecom">lignecom</option>
+        </select>
 
-    $table = $_POST["table"];
+        <button type="submit">Afficher les champs</button>
+    </form>
+    <a href='index.html'><button>Retour à l'accueil</button></a>
 
-    // details connexion
-    $mysqli = new mysqli("localhost", "root2", "pass", "tp2_sio1_commande");
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $table = $_POST["table"];
 
-    // verif la co
-    if ($mysqli->connect_error) {
-        die("Erreur de connexion à la base de données: " . $mysqli->connect_error);
-    }
+        $dsn = "mysql:host=localhost;dbname=tp2_sio1_commande";
+        $username = "root2";
+        $password = "pass";
 
-    // noms
-    $columns = [];
-    $result = $mysqli->query("SHOW COLUMNS FROM `$table`");
+        try {
+            $pdo = new PDO($dsn, $username, $password);
 
-    while ($row = $result->fetch_assoc()) {
-        $columns[] = $row['Field'];
-    }
+            $columns = [];
+            $stmt = $pdo->query("SHOW COLUMNS FROM `$table`");
 
-    $result->close();
-
-    ?>
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Insérer une ligne</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <h1>Insérer une ligne</h1>
-
-        <form action="insert.php" method="post">
-            <?php
-
-            foreach ($columns as $column) {
-                echo "<label for='$column'>$column :</label>";
-                echo "<input type='text' name='$column' id='$column' required>";
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $columns[] = $row['Field'];
             }
             ?>
 
-            <button type="submit">Insérer</button>
-        </form>
-        
-        <a href="index.html"><button>Retour à l'accueil</button></a>
-    </body>
-    </html>
-    <?php
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Insérer une ligne</title>
+                <link rel="stylesheet" href="styles.css">
+            </head>
+            <body>
+                <h1>Insérer une ligne</h1>
 
-    $mysqli->close();
-} else {
+                <form action="insert.php" method="post">
+                    <?php
+                    foreach ($columns as $column) {
+                        echo "<label for='$column'>$column :</label>";
+                        echo "<input type='text' name='$column' id='$column' required>";
+                    }
+                    ?>
 
+                    <button type="submit">Insérer</button>
+                </form>
+
+                <a href="index.html"><button>Retour à l'accueil</button></a>
+            </body>
+            </html>
+
+            <?php
+        } catch (PDOException $e) {
+            die("Erreur de connexion à la base de données: " . $e->getMessage());
+        }
+    }
     ?>
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Insérer une ligne</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <h1>Insérer une ligne</h1>
-
-        <form action="insert.php" method="post">
-            <label for="table">Choisir une table :</label>
-            <select name="table" id="table">
-                <option value="client">Client</option>
-                <option value="produit">Produit</option>
-                <option value="commande">Commande</option>
-                <option value="lignecom">Lignecom</option>
-            </select>
-
-            <button type="submit">Afficher les champs</button>
-        </form>
-        <a href='index.html'><button>Retour à l'accueil</button>
-    </body>
-    </html>
-    <?php
-}
-?>
+</body>
+</html>

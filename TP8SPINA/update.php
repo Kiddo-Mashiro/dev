@@ -21,23 +21,16 @@
         </select>
         <button type="submit">Afficher le tableau</button>
     </form>
-
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['table'])) {
-            // details connexion
-            $pdo = new PDO('mysql:host=127.0.0.1;dbname=tp2_sio1_commande', 'root2', 'pass');
+        $pdo = new PDO('mysql:host=127.0.0.1;dbname=tp2_sio1_commande', 'root2', 'pass');
 
-
-        // Récupérer le nom de la table depuis le formulaire POST
         $tableName = $_POST['table'];
 
-        // Numéro de ligne
         $result = $pdo->query("SELECT * FROM `$tableName`");
-        if ($result->rowCount() > 0){
+        if ($result->rowCount() > 0) {
             echo "<table border='1'>";
-            echo "<tr><th>Numéro</th>";
 
-            // Noms des colonnes
             $columns = $result->fetch(PDO::FETCH_ASSOC);
             foreach ($columns as $col => $value) {
                 echo "<th>$col</th>";
@@ -45,10 +38,8 @@
 
             echo "</tr>";
 
-            // Données + numéro de ligne
             $rowCount = 0;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr><td>$rowCount</td>";
 
                 foreach ($row as $value) {
                     echo "<td>$value</td>";
@@ -60,18 +51,35 @@
 
             echo "</table>";
 
-            // Formulaire pour choisir le numéro de la ligne
             echo "<form action='update_process.php' method='post'>";
             echo "<input type='hidden' name='table' value='$tableName'>";
-            echo "<label for='selectedID'>Choisir le numéro de la ligne :</label>";
-            echo "<input type='text' name='selectedID' required>";
-            echo "<button type='submit'>Afficher les champs de mise à jour</button>";
+
+            // Menu déroulant pour choisir la colonne
+            echo "<label for='selectedColumn'>Choisir la colonne :</label>";
+            echo "<select name='selectedColumn' id='selectedColumn'>";
+            $columnsStmt = $pdo->query("SHOW COLUMNS FROM `$tableName`");
+            $columns = $columnsStmt->fetchAll(PDO::FETCH_COLUMN);
+            foreach ($columns as $column) {
+                echo "<option value='$column'>$column</option>";
+            }
+            echo "</select>";
+
+            // Champ pour l'ancienne valeur
+            echo "<label for='oldValue'>Ancienne valeur :</label>";
+            echo "<input type='text' name='oldValue' required>";
+
+            // Champ pour la nouvelle valeur
+            echo "<label for='newValue'>Nouvelle valeur :</label>";
+            echo "<input type='text' name='newValue' required>";
+
+            echo "<button type='submit'>Mettre à jour</button>";
             echo "</form>";
         } else {
             echo "<p>Aucune donnée trouvée dans la table $tableName.</p>";
         }
     }
     ?>
+
 
 </body>
 
